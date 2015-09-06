@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #breadcrumbs {
+            overflow: hidden;
+        }
+
+        #breadcrumbs .breadcrumb {
+            float: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+
+<form action="#" id="add_breadcrumb">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="url" placeholder="url">
+    <button type="submit">Add</button>
+</form>
+<div id="breadcrumbs"></div>
+<script type="txt/template" id="link_template"><a href="<%= url %>"><%= name %></a> &gt;</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/2.0.2/backbone.marionette.min.js"></script>
+
+<script src="breadcrumbs.js" type="text/javascript"></script>
+
+</body>
+</html>

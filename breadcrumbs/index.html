@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>breadcrumbs</title>
+
+    <style>
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            /*margin-top: -50px;*/
+            /*margin-left: -50px;*/
+            transform: translate(-50%,-50%);
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            border-radius: 50%;
+            display: none;
+
+
+        }
+
+        body {
+        }
+
+        ol { white-space: nowrap; }
+        li {
+            display: inline-block;
+            line-height: 26px;
+            margin: 0 9px 0 -10px;
+            padding: 0 20px;
+            position: relative;
+        }
+        li:before,
+        li:after {
+            border-right: 1px solid #666666;
+            content: '';
+            display: block;
+            height: 50%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            transform: skewX(45deg);
+        }
+        li:after {
+            bottom: 0;
+            top: auto;
+            transform: skewX(-45deg);
+        }
+
+        li:last-of-type:before, li:last-of-type:after {
+            display: none;
+        }
+
+        li a {
+            font: bold 24px Sans-Serif;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        li:nth-of-type(1) a { color: hsl(0, 0%, 70%); }
+        li:nth-of-type(2) a { color: hsl(0, 0%, 65%); }
+        li:nth-of-type(3) a { color: hsl(0, 0%, 50%); }
+        li:nth-of-type(4) a { color: hsl(0, 0%, 45%); }
+
+        body { padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <span class="breadcrumbs"></span>
+    <div class="centered box"><span>box</span></div>
+    <div class=" circle"><span>circle</span></div>
+    <!--<ol>-->
+        <!--<li><a href="#">Home</a></li>-->
+        <!--<li><a href="#">About</a></li>-->
+        <!--<li><a href="#">Clients</a></li>-->
+        <!--<li><a href="#">Contact Us</a></li>-->
+    <!--</ol>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script>
+        var breadcrumbs = [];
+        $('div').click(function(e){
+            console.log($(this));
+            breadcrumbs.push($(this).text());
+            breadcrumbs.forEach(function(b){
+                console.log("!",b);
+                $('.breadcrumbs').append('<a href=""#>' + b + '</a>');
+            });
+            $(this).css('display','none');
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

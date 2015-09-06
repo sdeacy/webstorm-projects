@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="main.js"></script>
+</head>
+<body>
+
+<canvas id="c"  width = "400" height ="200" ></canvas>
+
+<script>
+    var c = document.querySelector("#c");
+    var ctx = c.getContext("2d");
+
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0,0,50,50);
+
+    // Save state with blue fill
+    ctx.save();
+    ctx.fillStyle = "green";
+    ctx.fillRect(100,100,10,10);
+    // Restore to blue fill
+        ctx.restore();
+        ctx.fillRect(200,10,20,20);
+
+
+    ctx.strokeText("hello", 100,100);
+    ctx.font = "bold 20px sans-serif";
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "black";
+    ctx.border = "5px solid";
+
+    ctx.fillText("hello", 100,100);
+    ctx.fill();
+    ctx.stroke();
+
+
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'black';
+
+    ctx.font = '36pt impact';
+    ctx.fillText('Some text', 100, 100);
+    ctx.strokeText('Some text', 100, 100);
+
+    ctx.fill();
+    ctx.stroke();
+
+
+//    var image = new Image();
+//    image.onload = function() {
+//        console.log("loaded");
+//        ctx.drawImage(image,0,0, c.width, c.height);
+//        var savedImage = c.toDataURL();  //creates text string that represents the photo
+//        window.open(savedImage);
+//
+//    };
+//    image.src = "fry.jpg";
+    </script>
+</body>
+</html>

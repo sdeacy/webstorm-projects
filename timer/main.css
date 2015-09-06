@@ -1,0 +1,16 @@
+body {
+    background-image: url("images/IMG_20141222_190628.jpg");
+    background-repeat: no-repeat;
+}
+
+.countdown {
+    margin-top: 15%;
+}
+
+#butt {
+    width:200px;
+    height:200px;
+    font-size: 70px;
+    border-radius: 100px;
+}
+

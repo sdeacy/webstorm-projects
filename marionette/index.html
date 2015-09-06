@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="tmp/backbone.marionette/jquery.js"></script>
+    <script src="tmp/backbone.marionette/underscore.js"></script>
+    <script src="tmp/backbone.marionette/backbone.js"></script>
+    <script src="tmp/backbone.marionette/backbone.marionette.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script id="index-template" type="text/x-backbone">
+    <h2>Welcome</h2>
+    <ul>
+        <li><a id="nav-users-index" href ="#">Users1</a></li>
+        <li><a href ="#">Roles</a></li>
+    </ul>
+
+</script>
+
+
+
+<script>
+    var data = [{name:"shay",email:"shay@email.com"},
+        {name:"anto",email:"anto@email.com"},
+        {name:"deacy",email:"deacy@email.com"}
+    ];
+
+    var UserAdmin = new Marionette.Application();
+
+    var AppRouter = Backbone.Router.extend({
+        routes : {
+            "" : "showIndex",
+            "users": "showUserList"
+        },
+        showIndex : function(){
+            UserAdmin.AppController.showIndex();
+        },
+        showUserList : function () {
+            UserAdmin.AppController.showUserList();
+        }
+    });
+
+    var AppController = Marionette.Controller.extend({
+        showIndex : function(){
+            UserAdmin.mainRegion.show(new IndexView());
+        },
+        showUserList : function(){
+            console.log("showUserList");
+            var userListView = new UserListView({collection: new Backbone.Collection(data) });
+            UserAdmin.mainRegion.show();
+            UserAdmin.Router.navigate("users"); // router.navigate - only sets url
+        }
+    });
+
+    UserAdmin.addInitializer(function(){
+        UserAdmin.addRegions({
+            mainRegion: "#app"
+        });
+
+        UserAdmin.AppController = new AppController();
+        UserAdmin.Router = new AppRouter();
+        Backbone.history.start();
+
+    });
+    var IndexView = Marionette.ItemView.extend({
+        template:"#index-template",
+        events: {
+            "click #nav-users-index" : "showUserList"
+        },
+        showUserList : function (ev) {
+            ev.preventDefault();
+            UserAdmin.AppController.showUserList();
+        }
+    });
+
+    var UserItemView = Marionette.ItemView.extend({
+        tagname : "tr",
+        template: _.template("<td><%=email%></td>")
+    });
+
+    var UserListView = Marionette.CollectionView.extend({
+        tagname : "table",
+        className : "table table-striped",
+        childView : UserItemView,
+        onBeforeRender : function(){
+            this.$el.append("<h2>User list</h2>");
+        }
+    });
+
+    UserAdmin.start();
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

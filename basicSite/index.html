@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #main-nav {
+            position: absolute;
+            top: 0;
+            left: 0px;
+            height: 100px;
+            font-family: "Soho Condensed Light";
+            text-transform: uppercase;
+        }
+        ul{
+            list-style: none;
+        }
+        #main-nav li {
+            width: 47px;
+            margin-top: 50px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        #main-nav li a {
+            display: block;
+            width: 120px;
+            padding: 5px 0 7px 20px;
+            border-top: 1px #c0c3c2 solid;
+            border-bottom: 1px #c0c3c2 solid;
+            text-decoration: none;
+            font-size: 20px;
+            color: #8c93a5;
+            background: #d0d6d5;
+        }
+        body {
+            background-image: url("img/IMG_20141222_181919.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+<nav id="main-nav">
+    <ul>
+        <li>
+            <a href="#">HOME</a>
+        </li>
+        <li>
+            <a href="#">WHAT</a>
+        </li>
+        <li>
+            <a href="#">WHO</a>
+        </li>
+        <li>
+            <a href="#">WHERE</a>
+        </li>
+    </ul>
+
+</nav>
+
+<div id="main">
+
+    <section id="slide-1" class="homeSlide">
+    <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
+        <div class="hsContainer">
+            <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h2">
+                <h2>Fade out elements before<br />they leave viewport</h2>
+                <p>This slide moves background image at a slower speed then the page scroll. Text is fading out to opacity 0 at 106 pixels from the top.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="slide-2">
+        <div class="bcg" data-0="background-color:rgb(1,27,59);" data-top="background-color:(0,0,0);"  data-anchor-target="#slide-2">
+            <div class="hsContainer">
+                <div class="hsContent">
+                    <h2 data-center="opacity: 1" data--200-bottom="opacity: 0" data-206-top="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-2 h2">Fade me in and out</h2>
+                    <p data-center="opacity: 1" data--200-bottom="opacity: 0" data-206-top="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-2 h2">Here we are changing the background color from blue to black. Text is fading in at 206 pixels from the bottom and fading out 106 pixels from the top.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="js/imagesloaded.js"></script>
+<script src="js/skrollr.js"></script>
+<script src="js/_main.js"></script>
+
+</body>
+</html>
