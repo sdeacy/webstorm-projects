@@ -143,8 +143,15 @@
     var breadcrumbController = Marionette.Controller.extend({
         showHome : function(){
             var crumbs = new Backbone.Collection({title:'Home'});
-            var breadcrumbView = new breadcrumbList({collection: crumbs});
-            UserAdmin.navRegion.show(breadcrumbView);
+            this.renderView(crumbs);
+        },
+        showUserList: function(){
+            var crumbs = new Backbone.Collection([{title:'Home'}, {title:'User listing'}]);
+            this.renderView(crumbs);
+        },
+        renderView : function (crumbs){
+            var breadcrumbView = new BreadCrumbList({collection: crumbs});
+            UserAdmin.navRegion.show(BreadCrumbView);
         }
     });
 
@@ -163,7 +170,7 @@
         });
         UserAdmin.on('index:requested', function(){
             UserAdmin.AppController.showIndex();
-            UserAdmin.breadcrumbController.showHome();
+            UserAdmin.breadcrumbController.showUserList();
         });
 
     });
@@ -181,7 +188,7 @@
         UserAdmin.breadcrumbController = new breadcrumbController();
         UserAdmin.Router = new AppRouter();
         UserAdmin.Users = new UsersCollection(data);
-        UserAdmin.breadcrumbs = new breadcrumbCollection({title : 'Home', callback: null });
+        // UserAdmin.breadcrumbs = new breadcrumbCollection({title : 'Home', callback: null });
 
         Backbone.history.start();
 
@@ -243,16 +250,25 @@
 
     var breadcrumbCollection = Backbone.Collection.extend({});
 
-    var breadcrumbView = Marionette.ItemView.extend({
-        tagName : 'li',
-        template : '_template(<%=title%>)'
+    var BreadCrumbView = Marionette.ItemView.extend({
+      tagName: "li",
+      template: _.template("<a href=#><%=title%></a>"),
+      events: {
+        "click a": "fireTrigger"
+      },
+      fireTrigger: function(ev) {
+        ev.preventDefault();
+        this.model.select();
+      }
     });
 
-    var breadcrumbList = Marionette.CollectionView.extend({
-        tagname : 'ul',
-        className : 'breadcrumb',
-        childView : 'breadcrumbView'
-    });
+
+
+var BreadCrumbList = Marionette.CollectionView.extend({
+  tagName: "ol",
+  className: "breadcrumb",
+  childView: BreadCrumbView
+});
 
     //=====================================================
 
